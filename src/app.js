@@ -15,6 +15,6 @@ await createLogCollections(db);
 
 await createPaymentViewCollection(db);
 
-await watchCollection(db, 'payment_view');
+await watchCollection(db, 'interbank_events');
 
 
