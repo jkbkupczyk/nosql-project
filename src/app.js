@@ -1,5 +1,11 @@
-import {createLogCollections, createPaymentViewCollection} from "./collections.js";
-import {watchCollections} from "./watchCollection.js";
+import {
+    aggregateEventById,
+    createLogCollections,
+    createPaymentViewCollection,
+    findPaymentViewByPaymentId,
+    textSearchPaymentViews,
+    watchCollections
+} from "./api.js";
 import {MongoClient} from "mongodb";
 
 
@@ -17,4 +23,16 @@ await createPaymentViewCollection(db);
 
 await watchCollections(db);
 
+// Wykonać po zasileniu bazy
 
+// powinno zwrócić jeden rekord
+const paymentView = await findPaymentViewByPaymentId(db, "934110120");
+console.log(`Wyszikiwanie po id = `, paymentView);
+
+// powinno zwrócić 3 rekordy
+const paymentViews = await textSearchPaymentViews(db, "city")
+console.log(`Text search = `, paymentViews);
+
+// ponowna agregacja eventu = "658690df-9502-4921-9b41-8d006de8029e"
+await aggregateEventById(db, "swift", "658690df-9502-4921-9b41-8d006de8029e")
+console.log(`Ponownie zagregowano event 658690df-9502-4921-9b41-8d006de8029e`);

@@ -1,12 +1,12 @@
 # Projekt
 
-## Start
+## Pierwsze uruchomienie projektu
 
-Aby uruchomić projekt 
+Zalecanym sposobem na uruchomienie projektu jest 
 
-```bash
-podman compose up -d
-```
+1. Wystartowanie kontenera z bazą MongoDB `podman compose up -d`
+2. Wystartowanie aplikacji -> `npm start`
+3. Zasilenie bazy inicjalnymi danymi np. poprzez wykonanie skryptu [init/seed.js](init/seed.js)
 
 ## Stop
 

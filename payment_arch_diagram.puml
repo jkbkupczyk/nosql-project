@@ -1,0 +1,95 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class interbank_events {
+   _id: objectid
+   eventId: string
+   eventTimestamp: string
+   eventType: string
+   payload: object
+   payload.amount: double
+   payload.cause: string
+   payload.creditor_account: string
+   payload.creditor_name: string
+   payload.currency: string
+   payload.debtor_account: string
+   payload.debtor_name: string
+   payload.error: string
+   payload.message_id: int32
+   payload.session_date: string
+   payload.session_number: int32
+   payload.status: string
+   payload.timestamp: string
+   payload.title: string
+   processedDateTime: isodate
+}
+class payment_view {
+   _id: objectid
+   amount: double
+   creditor: object
+   creditor.account: string
+   creditor.name: string
+   currency: string
+   currentStatus: string
+   debtor: object
+   debtor.account: string
+   debtor.name: string
+   domain: string
+   events: array
+   interbankInfo: object
+   interbankInfo.sessionDate: string
+   interbankInfo.sessionNumber: int32
+   paymentId: string
+   statusFlow: list
+   statusFlow.occurredAt: isodate
+   statusFlow.status: string
+   swift: object
+   swift.creditorAgent: string
+   swift.debtorAgent: string
+   title: string
+}
+class swift_events {
+   _id: objectid
+   eventId: string
+   eventTimestamp: string
+   eventType: string
+   payload: object
+   payload.amount: object
+   payload.amount.currency: string
+   payload.amount.value: double
+   payload.creditorAccount: object
+   payload.creditorAccount.type: string
+   payload.creditorAccount.value: string
+   payload.creditorAgent: string
+   payload.creditorParty: object
+   payload.creditorParty.buildingNumber: string
+   payload.creditorParty.city: string
+   payload.creditorParty.country: string
+   payload.creditorParty.name: string
+   payload.creditorParty.postcode: string
+   payload.creditorParty.street: string
+   payload.debtorAccount: object
+   payload.debtorAccount.type: string
+   payload.debtorAccount.value: string
+   payload.debtorAgent: string
+   payload.debtorParty: object
+   payload.debtorParty.buildingNumber: string
+   payload.debtorParty.city: string
+   payload.debtorParty.country: string
+   payload.debtorParty.name: string
+   payload.debtorParty.postcode: string
+   payload.debtorParty.street: string
+   payload.reason: string
+   payload.settlementReference: string
+   payload.settlementTimestamp: string
+   payload.status: string
+   payload.timestamp: string
+   payload.title: string
+   payload.txId: string
+   processedDateTime: isodate
+}
+
+@enduml
