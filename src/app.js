@@ -1,5 +1,5 @@
 import {createLogCollections, createPaymentViewCollection} from "./collections.js";
-import {watchCollection} from "./watchCollection.js";
+import {watchCollections} from "./watchCollection.js";
 import {MongoClient} from "mongodb";
 
 
@@ -15,6 +15,6 @@ await createLogCollections(db);
 
 await createPaymentViewCollection(db);
 
-await watchCollection(db, 'interbank_events');
+await watchCollections(db);
 
 
